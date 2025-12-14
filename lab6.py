@@ -7,7 +7,7 @@ from typing import Callable, Any, Type, Optional, List
 
 class FileNotFound(Exception):
     def __init__(self, filepath):
-        super().__init__(f"Файл '{filepath}' не існує.")
+        super().__init__(f"File '{filepath}' does not exist.")
 
 
 class FileCorrupted(Exception):
@@ -43,12 +43,12 @@ def logged(
                 logger.addHandler(handler)
 
             try:
-                logger.info(f"Запуск методу {func.__name__}")
+                logger.info(f"Method launch {func.__name__}")
                 result = func(*args, **kwargs)
-                logger.info(f"{func.__name__} виконано успішно")
+                logger.info(f"{func.__name__} done completely ")
                 return result
             except exception_type as e:
-                logger.error(f"Помилка у {func.__name__}: {e}")
+                logger.error(f"Error у {func.__name__}: {e}")
                 raise exception_type(str(e)) from e
 
         return wrapper
@@ -70,7 +70,7 @@ class CSVFileManager:
             with open(self.filepath, "r", encoding="utf-8") as f:
                 return list(csv.reader(f, delimiter=self.delimiter))
         except (IOError, OSError, csv.Error) as e:
-            raise FileCorrupted(f"Помилка читання: {e}") from e
+            raise FileCorrupted(f"Reading error: {e}") from e
 
     @logged(FileCorrupted, mode="file")
     def write(self, data: List[List[Any]]):
@@ -79,7 +79,7 @@ class CSVFileManager:
                 writer = csv.writer(f, delimiter=self.delimiter)
                 writer.writerows(data)
         except (IOError, OSError, csv.Error) as e:
-            raise FileCorrupted(f"Помилка запису: {e}") from e
+            raise FileCorrupted(f"Recording error: {e}") from e
 
     @logged(FileCorrupted, mode="file")
     def append(self, data: List[List[Any]]):
@@ -88,7 +88,7 @@ class CSVFileManager:
                 writer = csv.writer(f, delimiter=self.delimiter)
                 writer.writerows(data)
         except (IOError, OSError, csv.Error) as e:
-            raise FileCorrupted(f"Помилка дописування: {e}") from e
+            raise FileCorrupted(f"Posting error: {e}") from e
 
 
 if __name__ == "__main__":
@@ -100,11 +100,11 @@ if __name__ == "__main__":
         ["Banana", 20]
     ])
 
-    print("Файл містить:", manager.read())
+    print("File contains:", manager.read())
 
     manager.append([
         ["Orange", 30],
         ["Milk", 40]
     ])
 
-    print("Після дописування:", manager.read())
+    print("After posting:", manager.read())
