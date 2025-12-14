@@ -1,13 +1,12 @@
-Розробити клас для роботи з файлом. Клас повинен містити базові методи такі як:  читання та запис у файлу, а також можливість дописувати у файл (залишаючи попередній вміст файлу). Шлях та назву файлу потрібно передавати через конструктор класу. Під час створення інстансу класу, необхідно перевіряти чи файл існує. Якщо такого файлу не має - генерувати відповідний виняток (exception). Під час читання чи запису у файл, якщо файл пошкоджено, або запис неможливий - генерувати відповідний виняток. У якості винятків потрібно створити свої власні винятки. Додатково розробити декоратор для логування операцій запису, читання та створення файлу. Параметризований декоратор logged, що приймає як аргументи ексепшн (виняток) та режим. Режим може бути "console" або "file". При виникненні ексепшну в декорованому методі, він логується за допомогою модуля logging. В режимі консолі логування відбувається в консоль, а в режимі файлу логування записується в файл.
-Користувацькі виняткові ситуації (ексепшени) для чіткого розмежування проблем, пов'язаних із файлами:
-Файл не знайдено (FileNotFound).
-Файл пошкоджено (проблеми з доступом або читанням самого файлу) (FileCorrupted).
-Тип файлу для логування подій - text
+Develop a class for working with a file. The class must contain basic methods such as reading from a file and writing to a file, as well as the ability to append data to a file (while preserving the existing file contents). The file path and name must be passed through the class constructor.
+When creating an instance of the class, it is necessary to check whether the file exists. If the file does not exist, an appropriate exception must be raised. During reading from or writing to the file, if the file is corrupted or writing is impossible, a corresponding exception must be raised. Custom exceptions must be created for this purpose.
+Additionally, develop a decorator for logging file creation, read, and write operations. Create a parameterized decorator logged that takes an exception and a mode as arguments. The mode can be "console" or "file". When an exception occurs in a decorated method, it is logged using the logging module. In console mode, logging is output to the console; in file mode, logging is written to a file.
+Custom exceptions for clear separation of file-related problems:
+File not found (FileNotFound).
+File corrupted (problems with access to or reading the file) (FileCorrupted).
 
-Тип файлу для читання\запису
+Type of file for logging events: text.
 
-5
-csv
-
+Type of file for reading/writing: CSV.
 
 
